@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>traj_utils</name>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <description>The traj_utils package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
@@ -51,15 +51,16 @@
   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>message_generation</build_depend>
+  <build_depend>bspline_opt</build_depend>
 
   <build_export_depend>catkin</build_export_depend>
-  <!-- <build_export_depend>bspline_opt</build_export_depend> -->
+   <build_export_depend>bspline_opt</build_export_depend>
   <!--build_export_depend>path_searching</build_export_depend-->
   <!--build_export_depend>roscpp</build_export_depend-->
   <build_export_depend>std_msgs</build_export_depend>
 
   <exec_depend>catkin</exec_depend>
-  <!--exec_depend>bspline_opt</exec_depend-->
+  <exec_depend>bspline_opt</exec_depend>
   <!--exec_depend>path_searching</exec_depend-->
   <exec_depend>roscpp</exec_depend>
   <exec_depend>std_msgs</exec_depend>
