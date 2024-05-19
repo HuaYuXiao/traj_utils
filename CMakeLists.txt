@@ -10,10 +10,9 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   message_generation
-  #cv_bridge
-        # for fast:
-        #bspline_opt
-        #path_searching
+  cv_bridge
+        bspline_opt
+        path_searching
 )
 find_package(Eigen3 REQUIRED)
 find_package(PCL 1.7 REQUIRED)
@@ -36,7 +35,7 @@ generate_messages(
 catkin_package(
  INCLUDE_DIRS include
  LIBRARIES traj_utils 
- CATKIN_DEPENDS message_runtime # for fast: path_searching bspline_opt
+ CATKIN_DEPENDS message_runtime path_searching bspline_opt
 #  DEPENDS system_lib
 )
 
@@ -50,11 +49,11 @@ include_directories(
 
 link_directories(${PCL_LIBRARY_DIRS})
 
-add_library( traj_utils
-#        src/planning_visualization_fast.cpp
+add_library(traj_utils
+        src/planning_visualization_fast.cpp
         src/planning_visualization_ego.cpp
     src/polynomial_traj.cpp 
     )
-target_link_libraries( traj_utils
+target_link_libraries(traj_utils
     ${catkin_LIBRARIES} 
     )  
