@@ -10,9 +10,9 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   message_generation
-  #cv_bridge
+  cv_bridge
         bspline_opt
-        #path_searching
+        path_searching
 )
 find_package(Eigen3 REQUIRED)
 find_package(PCL 1.7 REQUIRED)
@@ -35,7 +35,7 @@ generate_messages(
 catkin_package(
  INCLUDE_DIRS include
  LIBRARIES traj_utils 
- CATKIN_DEPENDS message_runtime bspline_opt
+ CATKIN_DEPENDS message_runtime path_searching bspline_opt
 #  DEPENDS system_lib
 )
 

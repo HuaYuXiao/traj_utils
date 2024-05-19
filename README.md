@@ -8,6 +8,11 @@ The traj_utils package, modified from [traj_utils](https://github.com/ZJU-FAST-L
 ![Static Badge](https://img.shields.io/badge/Ubuntu-20.04.6-E95420?logo=ubuntu)
 
 
+## Release Note
+
+- v1.1.0: support `Fast-Planner`
+
+
 ## Compilation
 
 ```bash
