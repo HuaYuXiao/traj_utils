@@ -195,6 +195,45 @@ PolynomialTraj minSnapTraj(const Eigen::MatrixXd& Pos, const Eigen::Vector3d& st
   return poly_traj;
 }
 
+PolynomialTraj PolynomialTraj::one_segment_traj_gen(const Eigen::Vector3d &start_pt, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
+                                                    const Eigen::Vector3d &end_pt, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc,
+                                                    double t)
+{
+    Eigen::MatrixXd C = Eigen::MatrixXd::Zero(6, 6), Crow(1, 6);
+    Eigen::VectorXd Bx(6), By(6), Bz(6);
+
+    C(0, 5) = 1;
+    C(1, 4) = 1;
+    C(2, 3) = 2;
+    Crow << pow(t, 5), pow(t, 4), pow(t, 3), pow(t, 2), t, 1;
+    C.row(3) = Crow;
+    Crow << 5 * pow(t, 4), 4 * pow(t, 3), 3 * pow(t, 2), 2 * t, 1, 0;
+    C.row(4) = Crow;
+    Crow << 20 * pow(t, 3), 12 * pow(t, 2), 6 * t, 2, 0, 0;
+    C.row(5) = Crow;
+
+    Bx << start_pt(0), start_vel(0), start_acc(0), end_pt(0), end_vel(0), end_acc(0);
+    By << start_pt(1), start_vel(1), start_acc(1), end_pt(1), end_vel(1), end_acc(1);
+    Bz << start_pt(2), start_vel(2), start_acc(2), end_pt(2), end_vel(2), end_acc(2);
+
+    Eigen::VectorXd Cofx = C.colPivHouseholderQr().solve(Bx);
+    Eigen::VectorXd Cofy = C.colPivHouseholderQr().solve(By);
+    Eigen::VectorXd Cofz = C.colPivHouseholderQr().solve(Bz);
+
+    vector<double> cx(6), cy(6), cz(6);
+    for (int i = 0; i < 6; i++)
+    {
+        cx[i] = Cofx(i);
+        cy[i] = Cofy(i);
+        cz[i] = Cofz(i);
+    }
+
+    PolynomialTraj poly_traj;
+    poly_traj.addSegment(cx, cy, cz, t);
+
+    return poly_traj;
+}
+
 PolynomialTraj fastLine4deg(Eigen::Vector3d start, Eigen::Vector3d end, double max_vel, double max_acc,
                             double max_jerk) {
   Eigen::Vector3d disp = end - start;

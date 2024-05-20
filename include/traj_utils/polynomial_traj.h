@@ -68,7 +68,30 @@ public:
     }
   }
 
-  Eigen::Vector3d evaluate(double t) {
+    vector<double> getTimes()
+    {
+        return times;
+    }
+
+    vector<vector<double>> getCoef(int axis)
+    {
+        switch (axis)
+        {
+            case 0:
+                return cxs;
+            case 1:
+                return cys;
+            case 2:
+                return czs;
+            default:
+                std::cout << "\033[31mIllegal axis!\033[0m" << std::endl;
+        }
+
+        vector<vector<double>> empty;
+        return empty;
+    }
+
+    Eigen::Vector3d evaluate(double t) {
     /* detetrmine segment num */
     int idx = 0;
     while (times[idx] + 1e-4 < t) {
@@ -287,13 +310,17 @@ public:
 
     mean_a = mean_a / double(num);
   }
-};
 
 // input : position of waypoints, start/end vel and acc, segment time
 // Pos: Nx3
-PolynomialTraj minSnapTraj(const Eigen::MatrixXd& Pos, const Eigen::Vector3d& start_vel,
-                           const Eigen::Vector3d& end_vel, const Eigen::Vector3d& start_acc,
-                           const Eigen::Vector3d& end_acc, const Eigen::VectorXd& Time);
+    static PolynomialTraj minSnapTraj(const Eigen::MatrixXd& Pos, const Eigen::Vector3d& start_vel,
+                                      const Eigen::Vector3d& end_vel, const Eigen::Vector3d& start_acc,
+                                      const Eigen::Vector3d& end_acc, const Eigen::VectorXd& Time);
+
+    static PolynomialTraj one_segment_traj_gen(const Eigen::Vector3d &start_pt, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
+                                               const Eigen::Vector3d &end_pt, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc,
+                                               double t);
+};
 
 PolynomialTraj fastLine4deg(Eigen::Vector3d start, Eigen::Vector3d end, double max_vel, double max_acc,
                             double max_jerk);
