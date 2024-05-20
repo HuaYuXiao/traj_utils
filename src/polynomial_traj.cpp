@@ -26,7 +26,7 @@
 #include <iostream>
 #include <traj_utils/polynomial_traj.h>
 
-PolynomialTraj minSnapTraj(const Eigen::MatrixXd& Pos, const Eigen::Vector3d& start_vel,
+PolynomialTraj PolynomialTraj::minSnapTraj(const Eigen::MatrixXd& Pos, const Eigen::Vector3d& start_vel,
                            const Eigen::Vector3d& end_vel, const Eigen::Vector3d& start_acc,
                            const Eigen::Vector3d& end_acc, const Eigen::VectorXd& Time) {
   int seg_num = Time.size();

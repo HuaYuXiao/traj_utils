@@ -4,7 +4,7 @@
   <version>1.2.0</version>
   <description>The traj_utils package</description>
   <author email="bzhouai@todo.todo">bzhouai</author>
-  <maintainer email="hyx020222@gmail.com">Eason Hua</maintainer>
+  <maintainer email="12010508@mail.sustech.edu.cn">Eason Hua</maintainer>
   <license>GPLv3</license>
 
   <buildtool_depend>catkin</buildtool_depend>
@@ -14,7 +14,6 @@
 
   <build_depend>path_searching</build_depend>
   <build_depend>roscpp</build_depend>
-
   <build_depend>message_generation</build_depend>
 
   <build_export_depend>catkin</build_export_depend>
