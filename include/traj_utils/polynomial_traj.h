@@ -310,20 +310,21 @@ public:
 
     mean_a = mean_a / double(num);
   }
+};
 
 // input : position of waypoints, start/end vel and acc, segment time
 // Pos: Nx3
-    static PolynomialTraj minSnapTraj(const Eigen::MatrixXd& Pos, const Eigen::Vector3d& start_vel,
-                                      const Eigen::Vector3d& end_vel, const Eigen::Vector3d& start_acc,
-                                      const Eigen::Vector3d& end_acc, const Eigen::VectorXd& Time);
+PolynomialTraj minSnapTraj(const Eigen::MatrixXd& Pos, const Eigen::Vector3d& start_vel,
+                                  const Eigen::Vector3d& end_vel, const Eigen::Vector3d& start_acc,
+                                  const Eigen::Vector3d& end_acc, const Eigen::VectorXd& Time);
 
-    static PolynomialTraj one_segment_traj_gen(const Eigen::Vector3d &start_pt, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
-                                               const Eigen::Vector3d &end_pt, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc,
-                                               double t);
-};
+PolynomialTraj one_segment_traj_gen(const Eigen::Vector3d &start_pt, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
+                                           const Eigen::Vector3d &end_pt, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc,
+                                           double t);
 
 PolynomialTraj fastLine4deg(Eigen::Vector3d start, Eigen::Vector3d end, double max_vel, double max_acc,
                             double max_jerk);
+
 PolynomialTraj fastLine3deg(Eigen::Vector3d start, Eigen::Vector3d end, double max_vel, double max_acc);
 
 #endif
