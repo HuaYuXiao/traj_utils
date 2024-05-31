@@ -17,5 +17,5 @@ The traj_utils package, submodule of `Fast-Planner` & `EGO-Planner`
 ## Installation
 
 ```bash
-catkin_make install --source src/traj_utils --build build/traj_utils
+catkin_make install --source Planning/traj_utils --build Planning/traj_utils/build
 ```
